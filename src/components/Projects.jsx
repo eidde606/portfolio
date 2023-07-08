@@ -28,7 +28,7 @@ const ProjectCards = () => {
           title={project.title}
           description={project.description}
           imageSrc={project.getImageSrc()}
-          websiteUrl="https://funny-gumption-52823b.netlify.app"
+          websiteUrl="https://golden-seahorse-850414.netlify.app"
         />
       ))}
     </Box>
