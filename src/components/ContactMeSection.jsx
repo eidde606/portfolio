@@ -1,5 +1,3 @@
-import React, { useEffect, useRef } from "react";
-import { useFormik } from "formik";
 import {
   Box,
   Button,
@@ -11,27 +9,29 @@ import {
   Select,
   Textarea,
   VStack,
+  useBreakpointValue,
   useToast,
 } from "@chakra-ui/react";
+import emailjs from "emailjs-com";
+import { useFormik } from "formik";
+import React, { useEffect, useRef } from "react";
 import * as Yup from "yup";
-import FullScreenSection from "./FullScreenSection";
 import useSubmit from "../hooks/useSubmit";
-import emailjs from "@emailjs/browser";
+import FullScreenSection from "./FullScreenSection";
 
-/**
- * Covers a complete form implementation using formik and yup for validation
- */
 const ContactMeSection = () => {
   const form = useRef();
   const toast = useToast();
 
   const sendEmail = (e) => {
+    e.preventDefault();
+
     emailjs
       .sendForm(
-        "service_8wjkn4p",
-        "template_7cxv7i9",
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
         form.current,
-        "-N8AEob4bCojrOdby"
+        "YOUR_USER_ID"
       )
       .then(
         (result) => {
@@ -46,16 +46,6 @@ const ContactMeSection = () => {
 
   const { isLoading, response, submit } = useSubmit();
 
-  <form ref={form} onSubmit={sendEmail}>
-    <label>Name</label>
-    <input type="text" name="user_name" />
-    <label>Email</label>
-    <input type="email" name="user_email" />
-    <label>Message</label>
-    <textarea name="message" />
-    <input type="submit" value="Send" />
-  </form>;
-
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -66,7 +56,7 @@ const ContactMeSection = () => {
     onSubmit: (values) => {
       submit("https://john.com/contactme", values);
       sendEmail(values);
-      resetForm();
+      formik.resetForm();
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("Required"),
@@ -80,7 +70,7 @@ const ContactMeSection = () => {
   useEffect(() => {
     if (response) {
       toast({
-        title: "Email Service.",
+        title: "Email Service",
         description: response.message,
         status: response.type,
         duration: 3000,
@@ -93,19 +83,25 @@ const ContactMeSection = () => {
     }
   }, [response]);
 
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
     <FullScreenSection
       isDarkBackground
       backgroundColor="#2A4365"
-      py={16}
+      py={isMobile ? 8 : 16}
       spacing={8}
     >
-      <VStack w="1024px" p={32} alignItems="flex-start">
+      <VStack
+        w={isMobile ? "100%" : "1024px"}
+        p={isMobile ? 8 : 32}
+        alignItems="flex-start"
+      >
         <Heading as="h1" id="contactme-section" color="yellow">
           Contact me
         </Heading>
         <Box p={6} rounded="md" w="100%">
-          <form onSubmit={formik.handleSubmit}>
+          <form ref={form} onSubmit={sendEmail}>
             <VStack spacing={4}>
               <FormControl
                 isInvalid={
@@ -139,8 +135,7 @@ const ContactMeSection = () => {
                   name="type"
                   {...formik.getFieldProps("type")}
                   bg="white"
-                  color="black
-                  "
+                  color="black"
                 >
                   <option value="hireMe">Freelance project proposal</option>
                   <option value="openSource">
@@ -156,7 +151,7 @@ const ContactMeSection = () => {
                 <Textarea
                   id="comment"
                   name="comment"
-                  height={250}
+                  height={isMobile ? 150 : 250}
                   {...formik.getFieldProps("comment")}
                 />
                 <FormErrorMessage>{formik.errors.comment}</FormErrorMessage>
