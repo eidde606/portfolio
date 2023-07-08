@@ -1,39 +1,16 @@
 import { Box, Heading } from "@chakra-ui/react";
-import DashboardScreenSection from "./FullScreenSection";
 import React from "react";
-import photo1 from "../images/photo1.jpg";
-import photo2 from "../images/photo2.jpg";
-import photo3 from "../images/photo3.jpg";
-import photo4 from "../images/photo4.jpg";
+import myreads from "../images/myreads.png";
 import Card from "./Card";
+import DashboardScreenSection from "./FullScreenSection";
 
 const projects = [
   {
-    title: "React Space",
+    title: "MyReads",
     description:
-      "I built a modern and stylish hair salon website using React. The website features a sleek design with easy navigation and showcases the salon's services, prices, and booking options.",
-    getImageSrc: () => photo1,
-    to: "/project/react-space",
-  },
-  {
-    title: "React Space",
-    description:
-      "I built a modern and stylish hair salon website using React. The website features a sleek design with easy navigation and showcases the salon's services, prices, and booking options.",
-    getImageSrc: () => photo2,
-    to: "/project/react-space",
-  },
-  {
-    title: "React Space",
-    description:
-      "I built a modern and stylish hair salon website using React. The website features a sleek design with easy navigation and showcases the salon's services, prices, and booking options.",
-    getImageSrc: () => photo3,
-    to: "/project/react-space",
-  },
-  {
-    title: "React Space",
-    description:
-      "I built a modern and stylish hair salon website using React. The website features a sleek design with easy navigation and showcases the salon's services, prices, and booking options.",
-    getImageSrc: () => photo4,
+      "MyReads it is an app that tracks the books you are currently reading," +
+      " want to read and have read.",
+    getImageSrc: () => myreads,
     to: "/project/react-space",
   },
 ];
@@ -51,6 +28,7 @@ const ProjectCards = () => {
           title={project.title}
           description={project.description}
           imageSrc={project.getImageSrc()}
+          websiteUrl="https://funny-gumption-52823b.netlify.app"
         />
       ))}
     </Box>
@@ -63,7 +41,7 @@ const Projects = () => {
       backgroundColor="lightgray"
       isDarkBackground
       p={20}
-      alignItems="flex-start"
+      // alignItems="flex-start"
       spacing={8}
     >
       <Heading as="h1" id="projects-section" color="yellow">

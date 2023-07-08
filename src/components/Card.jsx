@@ -1,17 +1,20 @@
-import { Divider, VStack, Button } from "@chakra-ui/react";
-import { HStack } from "@chakra-ui/react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  Button,
+  Divider,
+  HStack,
+  Heading,
+  Image,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { Heading, Image, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
-const Card = ({ title, description, imageSrc }) => {
-  const [showDescription, setShowDescription] = useState(false);
-
+const Card = ({ title, description, imageSrc, websiteUrl }) => {
   const handleButtonClick = () => {
-    setShowDescription(!showDescription);
+    window.open(websiteUrl, "_blank");
   };
-
   return (
     <VStack
       borderWidth="0px"
@@ -37,7 +40,7 @@ const Card = ({ title, description, imageSrc }) => {
             variant="outline"
             onClick={handleButtonClick}
           >
-            {showDescription ? "Hide" : "Read More"}
+            Visit Website
           </Button>
         </HStack>
       </VStack>
