@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   VStack,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +16,10 @@ const Card = ({ title, description, imageSrc, websiteUrl }) => {
   const handleButtonClick = () => {
     window.open(websiteUrl, "_blank");
   };
+
+  const imageSize = useBreakpointValue({ base: "100%", md: "384px" });
+  const buttonSize = useBreakpointValue({ base: "sm", md: "md" });
+
   return (
     <VStack
       borderWidth="0px"
@@ -26,7 +31,7 @@ const Card = ({ title, description, imageSrc, websiteUrl }) => {
       bgColor="white"
       p={2}
     >
-      <Image src={imageSrc} alt={title} borderRadius="lg" width="384px" />
+      <Image src={imageSrc} alt={title} borderRadius="lg" width={imageSize} />
       <VStack alignItems="flex-start" spacing={2} bgColor="white">
         <Heading size="md" color="black">
           {title}
@@ -39,6 +44,7 @@ const Card = ({ title, description, imageSrc, websiteUrl }) => {
             colorScheme="teal"
             variant="outline"
             onClick={handleButtonClick}
+            size={buttonSize}
           >
             Visit Website
           </Button>
