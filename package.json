@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+<<<<<<< HEAD
     "start": "vite preview",
+=======
+>>>>>>> 2e3cf6a23b48e38e01211e35e882c4f51f841cff
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
@@ -35,6 +38,10 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
+<<<<<<< HEAD
     "vite": "^4.4.2"
+=======
+    "vite": "^4.0.0"
+>>>>>>> 2e3cf6a23b48e38e01211e35e882c4f51f841cff
   }
 }
