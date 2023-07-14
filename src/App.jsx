@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import ContactMe from "./components/ContactMeSection";
+import Contacts from "./components/Contacts";
 import Navbar from "./components/Header";
 import DashBoard from "./components/LandingSection";
 import Projects from "./components/Projects";
@@ -15,7 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<DashBoard />} />
             <Route path="/projects-section" element={<Projects />} />
-            <Route path="/contactme-section" element={<ContactMe />} />
+            <Route path="/contacts-section" element={<Contacts />} />
           </Routes>
         </Router>
       </ChakraProvider>

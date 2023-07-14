@@ -90,7 +90,7 @@ const Navbar = () => {
             <HStack spacing={8}>
               <Link to="/">Home</Link>
               <Link to="/projects-section">Projects</Link>
-              <Link to="/contactme-section">Contact</Link>
+              <Link to="/contacts-section">Contact</Link>
             </HStack>
           </nav>
         </HStack>
